@@ -1,0 +1,29 @@
+{
+  "name": "@koficypher/spektra",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "spektra",
+    "momo",
+    "MTN Mobile Money",
+    "Vodafone",
+    "Airtel Tigo",
+    "SDK"
+  ],
+  "author": "Kofi Cypher <skcypher6@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/koficypher/spektra/issues"
+  },
+  "homepage": "https://github.com/koficypher/spektra#readme",
+  "dependencies": {
+    "atob": "^2.1.2",
+    "btoa": "^1.2.1",
+    "dotenv": "^8.2.0",
+    "request": "^2.88.0"
+  }
+}
