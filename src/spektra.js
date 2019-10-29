@@ -15,6 +15,17 @@ class Spektra {
              return error;
          }
    }
+
+   async checkOutPay(data) {
+       try {
+           let token = await this.requestor.getToken();
+           let tokenObj = JSON.parse(token);
+           let results = await this.requestor.generateCheckOutPay(data,tokenObj);
+           return results;
+       } catch (error) {
+        return error;
+       }
+   }
 }
 
 module.exports = Spektra;
