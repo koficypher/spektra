@@ -1,4 +1,5 @@
 'use strict';
+
 const Requestor = require('./Requestor')
 
 class Spektra {
@@ -24,6 +25,39 @@ class Spektra {
            return results;
        } catch (error) {
         return error;
+       }
+   }
+
+   async receivePayment(data) {
+       try {
+        let token = await this.requestor.getToken();
+        let tokenObj = JSON.parse(token);
+        let results = await this.requestor.generatePayment(data, tokenObj);
+        return results; 
+       } catch (error) {
+          return error;
+       }
+   }
+
+   async payMobileNumber(data) {
+    try {
+        let token = await this.requestor.getToken();
+        let tokenObj = JSON.parse(token);
+        let results = await this.requestor.payMobile(data, tokenObj);
+        return results; 
+       } catch (error) {
+          return error;
+       }
+   }
+
+   async payTillNumber(data) {
+    try {
+        let token = await this.requestor.getToken();
+        let tokenObj = JSON.parse(token);
+        let results = await this.requestor.payTillNumber(data, tokenObj);
+        return results; 
+       } catch (error) {
+          return error;
        }
    }
 }

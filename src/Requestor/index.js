@@ -7,6 +7,7 @@ class Requestor {
 
     constructor() {
      this.baseUrl = Config.environment == 'production' ? 'https://api.spektra.co' : 'https://api-test.spektra.co';
+     this.version = 'api/v1';
     }
 
       getToken() {
@@ -27,7 +28,7 @@ class Requestor {
 
      generateCheckOutPay(data,tokenObj) {
       return new Promise((resolve,reject) => {
-           let url = `${this.baseUrl}/api/v1/checkout/initiate`;
+           let url = `${this.baseUrl}/${this.version}/checkout/initiate`;
            const { amount, currency, description, spektraAccountName, successURL, cancelURL} = data;
            const {access_token: token} = tokenObj;
            let auth = `Bearer ${token}`;
@@ -40,8 +41,6 @@ class Requestor {
              cancelURL : cancelURL
            };
 
-          // let payload = JSON.parse(load);
-
            Request({method:'post',url:url,headers:{'Authorization':auth,'Content-Type':'application/json'}, body:payload, json:true},(error,response,body) => {
             resolve(body);
 
@@ -51,6 +50,100 @@ class Requestor {
           });
       });
     }
+
+    generatePayment(data, tokenObj) {
+      return new Promise((resolve,reject) => {
+        let url = `${this.baseUrl}/${this.version}/payments/pay-in`;
+        const {access_token: token} = tokenObj;
+        let auth = `Bearer ${token}`;
+        let params = {
+          account: data.account,
+          spektraAccountName: data.spektraAccountName ? data.spektraAccountName :undefined,
+          amount: data.amount,
+          voucherCode: data.voucherCode ? data.voucherCode : undefined
+        };
+
+        Request({method:'post',url:url,headers:{'Authorization':auth,'Content-Type':'application/json'}, body:params, json:true},(error,response,body) => {
+          resolve(body);
+
+           if (error) {
+             reject(new Error("Error :",error));
+           }
+        });
+
+      });
+    }
+
+    payMobile(data, tokenObj) {
+      return new Promise((resolve,reject) => {
+        let url = `${this.baseUrl}/${this.version}/payments/send-money/mobile`;
+        const {access_token: token} = tokenObj;
+        let auth = `Bearer ${token}`;
+        let params = {
+          account : data.account,
+          amount: data.amount
+        }
+
+        Request({method:'post',url:url,headers:{'Authorization':auth,'Content-Type':'application/json'}, body:params, json:true},(error,response,body) => {
+          resolve(body);
+
+           if (error) {
+             reject(new Error("Error :",error));
+           }
+        });
+
+
+      });
+    }
+
+
+    payTillNumber(data, tokenObj) {
+      return new Promise((resolve,reject) => {
+        let url = `${this.baseUrl}/${this.version}/payments/till`;
+        const {access_token: token} = tokenObj;
+        let auth = `Bearer ${token}`;
+        let params = {
+          account : data.account,
+          amount: data.amount
+        }
+
+        Request({method:'post',url:url,headers:{'Authorization':auth,'Content-Type':'application/json'}, body:params, json:true},(error,response,body) => {
+          resolve(body);
+
+           if (error) {
+             reject(new Error("Error :",error));
+           }
+        });
+
+
+      });
+
+    }
+
+    payBankAccount(data, tokenObj) {
+      let url = `${this.baseUrl}/${this.version}/payments/bank`;
+      const {access_token: token} = tokenObj;
+      let auth = `Bearer ${token}`;
+
+      let params = {
+        account: account,
+        accountName: accountName,
+        bankName: bankName,
+        bankBranch: bankBranch,
+        amount: amount
+      }
+
+      
+      Request({method:'post',url:url,headers:{'Authorization':auth,'Content-Type':'application/json'}, body:params, json:true},(error,response,body) => {
+        resolve(body);
+
+         if (error) {
+           reject(new Error("Error :",error));
+         }
+      });
+
+    }
+
 
     getHeaderKey(public_key,secret_key) {
         return btoa(public_key+':'+secret_key);
