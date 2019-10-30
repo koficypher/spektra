@@ -60,6 +60,17 @@ class Spektra {
           return error;
        }
    }
+
+   async payToBank(data) {
+    try {
+        let token = await this.requestor.getToken();
+        let tokenObj = JSON.parse(token);
+        let results = await this.requestor.payBankAccount(data, tokenObj);
+        return results; 
+       } catch (error) {
+          return error;
+       }
+   }
 }
 
 module.exports = Spektra;
