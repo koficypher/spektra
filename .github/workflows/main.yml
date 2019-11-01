@@ -2,16 +2,16 @@ name: Spektra Testsuite Workflow
 on: push
 jobs:
   build:
-    strategy:
+   strategy:
         matrix:
           node: [6, 8, 10]
-        steps:
-         - name: Setting up node
-           uses: actions/setup-node@v1
-           with:
-              node-version: ${{ matrix.node }}
-         - name: Installing node dependencies
-           run: npm install
-         - name: Running Tests
-           run: npm run test
+   steps:
+      - name: Setting up node
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node }}
+      - name: Installing node dependencies
+        run: npm install
+      - name: Running Tests
+        run: npm run test
     
