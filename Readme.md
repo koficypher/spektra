@@ -1,4 +1,6 @@
-# Spektra Pay
+# Spektra Pay 
+[![Build Status](https://travis-ci.org/koficypher/spektra.svg?branch=master)](https://travis-ci.org/koficypher/spektra)
+
 Spektra Pay is the unofficial Javascript SDK for [Spektra](https://spektra.co) payment platform.
 It takes a [Promise](https://medium.com/@PangaraWorld/an-introduction-to-understanding-javascript-promises-37eff85b2b08) based or [Async Await](https://medium.com/javascript-in-plain-english/async-await-javascript-5038668ec6eb) approach. Its been made to be very simple and easy to use.
 
