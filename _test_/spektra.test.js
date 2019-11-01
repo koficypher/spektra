@@ -14,7 +14,7 @@ describe('Beginning Spektra SDK Tests', () => {
      expect(100).toBeGreaterThan(1)
    });
    
-   it('checking if Requestor has been called' , async() => {
+   it('checking if Requestor has been called' , async () => {
        const Spektray = new Spektra();
        expect(Requestor).toHaveBeenCalledTimes(1);
    }); 
