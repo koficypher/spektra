@@ -2,6 +2,7 @@ name: Spektra Testsuite Workflow
 on: push
 jobs:
   build:
+   runs-on: ubuntu-latest 
    strategy:
         matrix:
           node: [6, 8, 10]
