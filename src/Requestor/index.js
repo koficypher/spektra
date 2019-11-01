@@ -121,26 +121,29 @@ class Requestor {
     }
 
     payBankAccount(data, tokenObj) {
-      let url = `${this.baseUrl}/${this.version}/payments/bank`;
-      const {access_token: token} = tokenObj;
-      let auth = `Bearer ${token}`;
-
-      let params = {
-        account: account,
-        accountName: accountName,
-        bankName: bankName,
-        bankBranch: bankBranch,
-        amount: amount
-      }
-
-      
-      Request({method:'post',url:url,headers:{'Authorization':auth,'Content-Type':'application/json'}, body:params, json:true},(error,response,body) => {
-        resolve(body);
-
-         if (error) {
-           reject(new Error("Error :",error));
-         }
-      });
+       return new Promise((resolve,reject) => {
+        let url = `${this.baseUrl}/${this.version}/payments/bank`;
+        const {access_token: token} = tokenObj;
+        let auth = `Bearer ${token}`;
+  
+        let params = {
+          account: account,
+          accountName: accountName,
+          bankName: bankName,
+          bankBranch: bankBranch,
+          amount: amount
+        }
+  
+        
+        Request({method:'post',url:url,headers:{'Authorization':auth,'Content-Type':'application/json'}, body:params, json:true},(error,response,body) => {
+          resolve(body);
+  
+           if (error) {
+             reject(new Error("Error :",error));
+           }
+        });
+   
+       });
 
     }
 

@@ -7,15 +7,6 @@ class Spektra {
     constructor() {
         this.requestor = new Requestor()
     }
-    
-    async fetchToken() {
-         try {
-            let token = await this.requestor.getToken();
-            return token;
-         } catch (error) {
-             return error;
-         }
-   }
 
    async checkOutPay(data) {
        try {

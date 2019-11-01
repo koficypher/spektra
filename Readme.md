@@ -12,4 +12,11 @@ It takes a [Promise](https://medium.com/@PangaraWorld/an-introduction-to-underst
  - You are now ready to recieve payments.
 
  ## Usage
- 
+ Using this SDK is very simple. To get started you have to require and instantiate it like so:
+ ```javascript
+  const Spektra = require('@koficypher/spektra')
+
+  const Pay = new Spektra();
+ ``` 
+
+
