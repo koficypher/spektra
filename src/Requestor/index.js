@@ -34,7 +34,7 @@ class Requestor {
            let auth = `Bearer ${token}`;
            let payload = {
              amount : amount,
-             currency : currency,
+             currency : currency ? currency : 'GHS',
              description : description,
              spektraAccountName : spektraAccountName,
              successURL : successURL,
